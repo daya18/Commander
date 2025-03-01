@@ -10,16 +10,23 @@ namespace cmdr
     class Application : public wxApp
     {
     public:
-        Application ();
-
         virtual bool OnInit () override;
         
         std::vector <Command> const & GetCommands ();
-        Command & CreateCommand ( std::string const & name, std::string const & command );
 
     private:
+        void CreateDefaultConfigFile ();
+        void LoadConfigFromFile ();
+
         std::vector <Command> commands;
     };
-}
 
+
+
+    // Implementation
+    inline std::vector <Command> const & Application::GetCommands ()
+    {
+        return commands;
+    }
+}
 wxDECLARE_APP ( cmdr::Application );

@@ -4,3 +4,6 @@
 
 ## Dependencies
  * wxWidgets
+
+## Usage
+ * Edit the Config.json file to customize the app
