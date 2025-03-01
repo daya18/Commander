@@ -1,5 +1,6 @@
 out
 .vs
+Config.json
 
 # Prerequisites
 *.d
