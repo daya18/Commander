@@ -14,6 +14,8 @@ namespace cmdr
         CommandPanel ();
 
     private:
+        void OnResize ( wxSizeEvent & );
+        
         std::vector <wxButton *> commandButtons;
         wxGridSizer * sizer;
     };

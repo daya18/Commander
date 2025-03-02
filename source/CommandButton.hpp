@@ -2,6 +2,8 @@
 
 #include <wx/wx.h>
 
+#include "Command.hpp"
+
 namespace cmdr
 {
 	class Command;
@@ -14,6 +16,6 @@ namespace cmdr
 	private:
 		wxBoxSizer * sizer;
 		wxButton * button;
-		Command const * command;
+		Command command;
 	};
 }

@@ -24,6 +24,9 @@ namespace cmdr
 
 	void Command::Execute () const
 	{		
+		if ( command.empty () )
+			return;
+
 		std::thread thread { [ this ] () { system ( command.data () ); } };
 		thread.detach ();
 	}

@@ -2,6 +2,7 @@
 
 #include <wx/wx.h>
 
+#include "Config.hpp"
 #include "CommandPanel.hpp"
 #include "Command.hpp"
 
@@ -12,21 +13,15 @@ namespace cmdr
     public:
         virtual bool OnInit () override;
         
-        std::vector <Command> const & GetCommands ();
+        Config & GetConfig ();
 
     private:
-        void CreateDefaultConfigFile ();
-        void LoadConfigFromFile ();
-
-        std::vector <Command> commands;
+        Config config;
     };
 
 
 
     // Implementation
-    inline std::vector <Command> const & Application::GetCommands ()
-    {
-        return commands;
-    }
+    inline Config & Application::GetConfig () { return config; }
 }
 wxDECLARE_APP ( cmdr::Application );

@@ -17,7 +17,7 @@ add_executable ( Commander )
 target_sources ( Commander PRIVATE 
 	source/Application.cpp
 	"source/CommandPanel.cpp"
- "source/CommandButton.cpp"   "source/Command.cpp")
+ "source/CommandButton.cpp"   "source/Command.cpp" "source/Config.cpp")
 
 # Add wxWidgets
 find_package ( wxWidgets REQUIRED COMPONENTS core base )
