@@ -28,7 +28,7 @@ add_subdirectory ( external/wxWidgets-3.2.6 )
 target_link_libraries ( Commander PRIVATE wx::core wx::base )
 
 # Add nlohmann json
-add_subdirectory ( external/json-develop )
+add_subdirectory ( external/json-3.11.3 )
 target_link_libraries ( Commander PRIVATE nlohmann_json)
 
 if (CMAKE_VERSION VERSION_GREATER 3.12)
