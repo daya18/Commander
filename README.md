@@ -12,7 +12,7 @@
     * Run `cmake --build .` to build the project
 
 ## Post Installation
-  * Copy the built executable to an empty folder
+  * Find the built executable, and copy it to an empty folder
     
 ## Usage
  * Run the commander executable
