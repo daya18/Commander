@@ -17,14 +17,18 @@ add_executable ( Commander )
 target_sources ( Commander PRIVATE 
 	source/Application.cpp
 	"source/CommandPanel.cpp"
- "source/CommandButton.cpp"   "source/Command.cpp" "source/Config.cpp")
+	"source/CommandButton.cpp"   
+	"source/Command.cpp" 
+	"source/Config.cpp"
+)
 
 # Add wxWidgets
-find_package ( wxWidgets REQUIRED COMPONENTS core base )
-target_link_libraries ( Commander PRIVATE wxWidgets::wxWidgets )
+set ( wxBUILD_SHARED off )
+add_subdirectory ( external/wxWidgets-3.2.6 )
+target_link_libraries ( Commander PRIVATE wx::core wx::base )
 
 # Add nlohmann json
-find_package (nlohmann_json REQUIRED )
+add_subdirectory ( external/json-develop )
 target_link_libraries ( Commander PRIVATE nlohmann_json)
 
 if (CMAKE_VERSION VERSION_GREATER 3.12)
