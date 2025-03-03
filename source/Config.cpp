@@ -6,57 +6,42 @@ namespace cmdr
 {
 	Config::Config ()
 	{
-		if ( ! std::filesystem::exists ( "Config.json" ) )
+		if ( !std::filesystem::exists ( "Config.json" ) )
 		{
-			nlohmann::json json
-			{
-				R"(
-					{
-					"CommandPanelWidth": 300,
-					"CommandPanelHeight": 500,
-	
-					"Commands": [
-						{ "Name": "Command 1", "Command": "" },
-						{ "Name": "Command 2", "Command": "" }
-					]
-					}
-				)"_json
-			};
-
-			std::ofstream file { "Config.json" };
-			file << std::setw ( 4 ) << json;
+			SetCommandPanelSize ( { 300, 500 } );
+			SetCommands ( { { "Command 1", "" }, {"Command 2", ""} } );
 		}
-
-		std::ifstream file { "Config.json" };
-		json = nlohmann::json::parse ( file );
-	}
-
-	Config::~Config ()
-	{
-		std::ofstream file { "Config.json" };
-		file << std::setw ( 4 ) << json;
 	}
 
 	void Config::SetCommandPanelSize ( wxSize const & size )
 	{
-		json [ "CommandPanelWidth" ] = size.x;
-		json [ "CommandPanelHeight" ] = size.y;
+		auto json { GetJson () };
+
+		json["CommandPanelWidth"] = size.x;
+		json["CommandPanelHeight"] = size.y;
+		
+		SetJson ( json );
 	}
 
 	void Config::SetCommands ( std::vector <Command> const & commands )
 	{
-		json [ "Commands" ] = "[]"_json;
+		auto json { GetJson () };
+
+		json["Commands"] = "[]"_json;
 
 		for ( int i = 0; auto const & command : commands )
-			json [ "Commands" ] [ i++ ] = command.ToJSON ();
+			json["Commands"][i++] = command.ToJSON ();
+		
+		SetJson ( json );
 	}
 
 	wxSize Config::GetCommandPanelSize ()
 	{
 		wxSize size;
+		auto json { GetJson () };
 
-		size.x = json [ "CommandPanelWidth" ];
-		size.y = json [ "CommandPanelHeight" ];
+		size.x = json["CommandPanelWidth"];
+		size.y = json["CommandPanelHeight"];
 
 		return size;
 	}
@@ -64,10 +49,26 @@ namespace cmdr
 	std::vector <Command> Config::GetCommands ()
 	{
 		std::vector <Command> commands;
+		auto json { GetJson () };
 
-		for ( auto & commandJson : json [ "Commands" ] )
+		for ( auto & commandJson : json["Commands"] )
 			commands.push_back ( Command { commandJson } );
 
 		return commands;
+	}
+
+	nlohmann::json Config::GetJson ()
+	{
+		if ( ! std::filesystem::exists ( "Config.json" ) )
+			return {};
+
+		std::ifstream file { "Config.json" };
+		return nlohmann::json::parse ( file );
+	}
+
+	void Config::SetJson ( nlohmann::json const & json )
+	{
+		std::ofstream file { "Config.json" };
+		file << std::setw ( 4 ) << json;
 	}
 }

@@ -11,7 +11,6 @@ namespace cmdr
 	{
 	public:
 		Config ();
-		~Config ();
 
 		void SetCommandPanelSize ( wxSize const & );
 		void SetCommands ( std::vector <Command> const & );
@@ -19,14 +18,8 @@ namespace cmdr
 		wxSize GetCommandPanelSize ();
 		std::vector <Command> GetCommands ();
 
-		nlohmann::json & GetJson ();
-
 	private:
-		nlohmann::json json;
+		nlohmann::json GetJson ();
+		void SetJson ( nlohmann::json const & );
 	};
-
-
-
-	// Implementation
-	inline nlohmann::json & Config::GetJson () { return json; }
 }
