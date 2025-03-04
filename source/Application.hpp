@@ -2,9 +2,8 @@
 
 #include <wx/wx.h>
 
-#include "Config.hpp"
-#include "CommandPanel.hpp"
 #include "Command.hpp"
+#include "CommandPanel.hpp"
 
 namespace cmdr
 {
@@ -13,15 +12,18 @@ namespace cmdr
     public:
         virtual bool OnInit () override;
         
-        Config & GetConfig ();
-
+        //void AddCommand ( std::string const & name, std::string const & command );
+        void DeleteCommand ( std::string const & name );
+        
     private:
-        Config config;
+        static std::string const dataFilePath;
+
+        void Load ();
+        void Save ();
+        void CreateDefaultDataFile ();
+
+        std::list <Command> commands;
     };
-
-
-
-    // Implementation
-    inline Config & Application::GetConfig () { return config; }
 }
+
 wxDECLARE_APP ( cmdr::Application );

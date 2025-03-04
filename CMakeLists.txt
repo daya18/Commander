@@ -19,7 +19,7 @@ target_sources ( Commander PRIVATE
 	"source/CommandPanel.cpp"
 	"source/CommandButton.cpp"   
 	"source/Command.cpp" 
-	"source/Config.cpp"
+	
 )
 
 # Add wxWidgets

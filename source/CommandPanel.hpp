@@ -11,11 +11,9 @@ namespace cmdr
     class CommandPanel : public wxFrame
     {
     public:
-        CommandPanel ();
+        CommandPanel ( std::list <Command> & );
 
     private:
-        void OnResize ( wxSizeEvent & );
-        
         std::vector <wxButton *> commandButtons;
         wxGridSizer * sizer;
     };

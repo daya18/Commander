@@ -11,11 +11,15 @@ namespace cmdr
 	class CommandButton : public wxWindow
 	{
 	public:
-		CommandButton ( wxWindow * parent, Command const & label );
+		CommandButton ( wxWindow * parent, Command & );
 
 	private:
+		void OnContextMenu ( wxContextMenuEvent & );
+		void OnMenu ( wxCommandEvent & );
+
+		Command * command;
+
 		wxBoxSizer * sizer;
 		wxButton * button;
-		Command command;
 	};
 }
