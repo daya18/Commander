@@ -27,9 +27,12 @@ namespace cmdr
 
     //}
 
-    void Application::DeleteCommand ( std::string const & name )
+    void Application::DeleteCommand ( Command & targetCommand )
     {
-        std::erase_if ( commands, [name] ( Command const & command) { return command.GetName () == name; } );
+        std::erase_if ( commands, [ &targetCommand ] ( Command const & command ) 
+            { return &command == &targetCommand; } );
+        
+        Save ();
     }
     
     void Application::Load ()

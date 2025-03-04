@@ -13,7 +13,7 @@ namespace cmdr
         virtual bool OnInit () override;
         
         //void AddCommand ( std::string const & name, std::string const & command );
-        void DeleteCommand ( std::string const & name );
+        void DeleteCommand ( Command & );
         
     private:
         static std::string const dataFilePath;

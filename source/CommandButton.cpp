@@ -1,5 +1,7 @@
 #include "CommandButton.hpp"
 
+#include "Application.hpp"
+
 namespace cmdr
 {
 	CommandButton::CommandButton ( wxWindow * parent, Command & command )
@@ -31,6 +33,7 @@ namespace cmdr
 		switch ( evt.GetId () )
 		{
 		case 1012:
+			wxGetApp ().DeleteCommand ( *command );
 			Destroy ();
 			break;
 		}

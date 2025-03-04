@@ -1,7 +1,7 @@
 {
     "Commands": [
         {
-            "Command": "",
+            "Command": "one",
             "Name": "Command 1"
         }
     ]

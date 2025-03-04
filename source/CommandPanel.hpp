@@ -13,8 +13,11 @@ namespace cmdr
     public:
         CommandPanel ( std::list <Command> & );
 
+        void SetCommands ( std::list <Command> & );
+
     private:
-        std::vector <wxButton *> commandButtons;
+        void CreateMenubar ();
+
         wxGridSizer * sizer;
     };
 }
